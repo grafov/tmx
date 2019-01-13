@@ -21,3 +21,15 @@ func Parse(r io.Reader) (Map, error) {
 	err = xml.Unmarshal(d, &m)
 	return m, err
 }
+
+// Parse returns the Tileset encoded in the reader. Could be used for
+// parsing TSX files.
+func ParseTileset(r io.Reader) (Tileset, error) {
+	var t Tileset
+	d, err := ioutil.ReadAll(r)
+	if err != nil {
+		return t, err
+	}
+	err = xml.Unmarshal(d, &t)
+	return t, err
+}
